@@ -1,0 +1,143 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n1,n2,n3;
+	int i,j,k;
+	cin>>n1>>n2>>n3;
+	int a[n1],b[n2],c[n3],d[n1+n2+n3];
+	cout<<"enter the entries of the first array"<<endl;
+	for(i=0;i<n1;i++)
+	cin>>a[i];
+	cout<<"second array entries"<<endl;
+	for(i=0;i<n2;i++)
+	cin>>b[i];
+	cout<<"enter the entries of third array"<<endl;
+	for(i=0;i<n3;i++)
+	cin>>c[i];
+	int count=0;
+	i=0;
+	j=0;
+	k=0;
+	while((i<n1)&&(j<n2)&&(k<n3))
+	{
+		if(a[i]>b[j])
+		{
+			if(a[i]>c[k])
+			{
+				if(b[j]>c[k])
+				{
+					d[count]=c[k];
+					count++;
+					k++;
+				}
+				else
+				{
+					d[count]=b[j];
+					count++;
+					j++;
+				}
+			}
+			else
+			{
+				d[count]=b[j];
+				count++;
+				j++;
+			}
+			
+		}
+		else
+		{
+			if(b[j]>c[k])
+			{
+				if(a[i]>c[k])
+				{
+					d[count]=c[k];
+					count++;
+					k++;
+				}
+				else
+				{
+					d[count]=a[i];
+					count++;
+					i++;
+				}
+			}
+			else
+			{
+				d[count]=a[i];
+				count++;
+				i++;
+			}
+		}
+	}
+	while(i<n1&&j<n2)
+	{
+		if(a[i]<b[j])
+		{
+			d[count]=a[i];
+			count++;
+			i++;
+		}
+		else
+		{
+			d[count]=b[j];
+			count++;
+			j++;
+		}
+	}
+	while(i<n1&&k<n3)
+	{
+		if(a[i]>c[k])
+		{
+			d[count]=c[k];
+			count++;
+			k++;
+		}
+		else
+		{
+			d[count]=a[i];
+			count++;
+			i++;
+		}
+	}
+	while(j<n2&&k<n3)
+	{
+		if(b[j]>c[k])
+		{
+			d[count]=c[k];
+			count++;
+			k++;
+		}
+		else
+		{
+			d[count]=b[j];
+			count++;
+			j++;
+		}
+	}
+	while(i<n1)
+	{
+		d[count]=a[i];
+		count++;
+		i++;
+	}
+	while(j<n2)
+	{
+		d[count]=b[j];
+		count++;
+		j++;
+	}
+	while(k<n3)
+	{
+		d[count]=c[k];	
+		count++;
+		k++;
+	}
+	for(i=0;i<n1+n2+n3;i++)
+	{
+		cout<<d[i]<<" ";
+	}
+	cout<<endl;
+	return 0;
+}

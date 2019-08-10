@@ -1,0 +1,55 @@
+#include<bits/stdc++.h>
+using namespace std;
+long int addition(long int num,long int times)
+{
+	long int sum=0,i;
+	for(i=0;i<times;i++)
+	{
+		long int temp=(sum+num)%1000000007;
+		if(temp<0)
+		temp+=1000000007;
+		sum=temp;
+	}
+	return sum;
+}
+long int fact(long int num)
+{
+	long int i;
+	long int temp=1;
+	for(i=2;i<=num;i++)
+	{
+		long int tempo=addition(temp,i)%1000000007;
+		if(temp<0)
+		tempo+=1000000007;
+		temp=(tempo)%1000000007;
+	}
+	cout<<"factorial of "<<temp<<"\n";
+	return temp;
+}
+int main()
+{
+	int i,j,k,l,r;
+	long int n;
+	cout<<"enter the size"<<"\n";
+	cin>>n;
+	long int a[n];
+	cout<<"enter the elements of the array"<<"\n";
+	for(i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	cout<<"enter the left and right most index of the array"<<"\n";
+	cin>>l>>r;
+	long int prod=1;
+	for(i=l;i<=r;i++)
+	{
+		long int temp=addition(prod,(fact(a[i])%1000000007))%1000000007;
+		if(temp<0)
+		{
+			temp=temp+1000000007;
+		}
+		prod=temp;
+	}
+	cout<<"product is"<<prod<<"\n";
+	return 0;
+}
